@@ -1,4 +1,4 @@
-const CACHE = "giokri-energy-v1";
+const CACHE = "giokri-energy-v2";
 
 const FILES = [
 "index.html",
