@@ -1,0 +1,13 @@
+{
+  "LUCE": {
+    "prezzo": 0.1489,
+    "quota": 8.25,
+    "unita": "kWh"
+  },
+
+  "GAS": {
+    "prezzo": 0.5636,
+    "quota": 8.25,
+    "unita": "Smc"
+  }
+}
