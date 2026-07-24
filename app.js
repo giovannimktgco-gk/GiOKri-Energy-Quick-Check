@@ -6,26 +6,32 @@ Scenario riferimento modificabile
 */
 
 
-const scenari = {
-
-LUCE: {
-
-prezzo:0.1489,
-quota:8.25,
-unita:"kWh"
-
-},
+let scenari = {};
 
 
-GAS: {
+fetch("config.json")
 
-prezzo:0.5636,
-quota:8.25,
-unita:"Smc"
+.then(response => response.json())
 
-}
+.then(data => {
 
-};
+    scenari = data;
+
+    console.log(
+      "Configurazione caricata",
+      scenari
+    );
+
+})
+
+.catch(error => {
+
+    console.error(
+      "Errore caricamento configurazione",
+      error
+    );
+
+});
 
 
 
