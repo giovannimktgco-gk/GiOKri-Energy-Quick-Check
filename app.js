@@ -52,6 +52,15 @@ energia
 
 function analizza(){
 
+    if(Object.keys(scenari).length === 0){
+
+alert(
+"Configurazione non ancora caricata, attendere qualche secondo"
+);
+
+return;
+
+}
 
 let energia =
 document.getElementById("energia").value;
