@@ -1,7 +1,9 @@
 /*
-GIORKI ENERGY QUICK CHECK v2.2
+GIORKI ENERGY QUICK CHECK v2.3
 
 Lettura parametri da Google Apps Script API
+
++ Google Analytics 4 Event Tracking
 
 */
 
@@ -188,6 +190,39 @@ return;
 
 
 
+/****************************************************
+ * EVENTO GA4 - ANALISI AVVIATA
+ ****************************************************/
+
+
+if(typeof gtag === "function"){
+
+
+gtag(
+"event",
+"quick_check_avviato",
+{
+
+energia: energia,
+
+consumo_annuo: consumo,
+
+prezzo_attuale: prezzoAttuale,
+
+quota_fissa: quotaAttuale
+
+}
+
+);
+
+
+}
+
+
+
+
+
+
 
 
 let parametro = 
@@ -269,7 +304,17 @@ let valutazione;
 
 
 
+let giudizio;
+
+
+
+
+
 if(differenza > 20){
+
+
+giudizio =
+"Convenienza possibile";
 
 
 valutazione =
@@ -280,6 +325,10 @@ valutazione =
 }
 
 else {
+
+
+giudizio =
+"Convenienza limitata";
 
 
 valutazione =
@@ -350,6 +399,40 @@ differenza.toFixed(2)
 
 
 valutazione;
+
+
+
+
+
+
+/****************************************************
+ * EVENTO GA4 - RISULTATO GENERATO
+ ****************************************************/
+
+
+if(typeof gtag === "function"){
+
+
+gtag(
+"event",
+"quick_check_risultato",
+{
+
+energia: energia,
+
+cluster: parametro.logica,
+
+risparmio_stimato:
+Number(differenza.toFixed(2)),
+
+giudizio: giudizio
+
+}
+
+);
+
+
+}
 
 
 
