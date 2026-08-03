@@ -198,6 +198,12 @@ return;
 if(typeof gtag === "function"){
 
 
+console.log(
+"GA4 EVENT QUICK CHECK AVVIATO"
+);
+
+
+
 gtag(
 "event",
 "quick_check_avviato",
@@ -213,6 +219,15 @@ quota_fissa: quotaAttuale
 
 }
 
+);
+
+
+}
+else {
+
+
+console.log(
+"GA4 NON DISPONIBILE"
 );
 
 
@@ -413,6 +428,12 @@ valutazione;
 if(typeof gtag === "function"){
 
 
+console.log(
+"GA4 EVENT QUICK CHECK RISULTATO"
+);
+
+
+
 gtag(
 "event",
 "quick_check_risultato",
@@ -433,7 +454,15 @@ giudizio: giudizio
 
 
 }
+else {
 
+
+console.log(
+"GA4 RISULTATO NON DISPONIBILE"
+);
+
+
+}
 
 
 }
