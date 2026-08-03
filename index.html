@@ -10,7 +10,26 @@
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b5394">
-  
+
+
+<!-- Google tag (gtag.js) - GiOKri Energy Quick Check -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KMYWDQ6PLT"></script>
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){
+dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config', 'G-KMYWDQ6PLT');
+
+</script>
+
+
 </head>
 
 <body>
@@ -20,14 +39,20 @@
 <h1>GiOKri Energy</h1>
 <h2>Quick Check</h2>
 
+
 <div class="box">
+
 
 <label>Tipo energia</label>
 
 <select id="energia" onchange="cambiaScenario()">
+
 <option value="LUCE">LUCE</option>
+
 <option value="GAS">GAS</option>
+
 </select>
+
 
 
 <label>Consumo annuo</label>
@@ -36,6 +61,7 @@
 type="number"
 id="consumo"
 placeholder="es. 6000">
+
 
 
 <label>Prezzo energia attuale</label>
@@ -47,6 +73,7 @@ step="0.000001"
 placeholder="€/kWh o €/Smc">
 
 
+
 <label>Quota fissa mensile</label>
 
 <input 
@@ -56,11 +83,16 @@ step="0.01"
 placeholder="€/mese">
 
 
+
 <button onclick="analizza()">
+
 ANALIZZA
+
 </button>
 
+
 </div>
+
 
 
 <div id="risultato" class="risultato">
@@ -70,10 +102,13 @@ Inserisci i dati e premi ANALIZZA
 </div>
 
 
+
 </div>
 
 
+
 <script src="app.js"></script>
+
 
 <script>
 
@@ -86,6 +121,7 @@ navigator.serviceWorker.register(
 }
 
 </script>
-  
+
+
 </body>
 </html>
