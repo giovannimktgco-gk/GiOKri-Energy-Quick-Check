@@ -1,17 +1,20 @@
 /*
-GIORKI ENERGY QUICK CHECK v2.1
+GIORKI ENERGY QUICK CHECK v2.2
 
 Lettura parametri da Google Apps Script API
-+ Tracciamento Google Analytics 4
 
 */
 
 
 let scenari = {};
 
+let parametriCaricati = false;
+
+
 
 const API_URL = 
 "https://script.google.com/macros/s/AKfycbxCdk79IKgTzyGAAr0bWvJE6ApowCSp7KTDA3_nC0yB06TKTW8wKFZBngysA6M-bNiv9Q/exec";
+
 
 
 
@@ -24,6 +27,9 @@ fetch(API_URL)
 .then(data => {
 
     scenari = data;
+
+    parametriCaricati = true;
+
 
     console.log(
       "Parametri caricati:",
@@ -45,6 +51,7 @@ fetch(API_URL)
 
 
 
+
 function cambiaScenario(){
 
 let energia =
@@ -61,6 +68,7 @@ energia
 
 
 
+
 function trovaCluster(energia, consumo){
 
 
@@ -68,11 +76,13 @@ let gruppi =
 scenari[energia];
 
 
+
 for(let cluster in gruppi){
 
 
     let c =
     gruppi[cluster];
+
 
 
     if(
@@ -87,6 +97,7 @@ for(let cluster in gruppi){
 }
 
 
+
 return null;
 
 
@@ -96,24 +107,38 @@ return null;
 
 
 
+
 function analizza(){
 
 
 
-if(Object.keys(scenari).length === 0){
+/****************************************************
+ * CONTROLLO CARICAMENTO PARAMETRI
+ ****************************************************/
+
+
+if(!parametriCaricati){
+
 
 alert(
-"Parametri non ancora caricati"
+"Attendere il caricamento dei parametri e riprovare"
 );
 
+
 return;
+
 
 }
 
 
 
+
+
+
 let energia =
 document.getElementById("energia").value;
+
+
 
 
 
@@ -124,10 +149,14 @@ document.getElementById("consumo").value
 
 
 
+
+
 let prezzoAttuale =
 Number(
 document.getElementById("prezzoAttuale").value
 );
+
+
 
 
 
@@ -139,20 +168,30 @@ document.getElementById("quotaAttuale").value
 
 
 
+
+
+
 if(!consumo || !prezzoAttuale || !quotaAttuale){
+
 
 alert(
 "Inserisci tutti i dati"
 );
 
+
 return;
+
 
 }
 
 
 
 
+
+
+
 let parametro = 
+
 trovaCluster(
 energia,
 consumo
@@ -160,24 +199,39 @@ consumo
 
 
 
+
+
+
+
 if(!parametro){
+
 
 alert(
 "Nessun parametro disponibile"
 );
 
+
 return;
+
 
 }
 
 
 
 
+
+
+
 let costoAttuale =
 
+
 (consumo * prezzoAttuale)
+
 +
+
 (quotaAttuale * 12);
+
+
 
 
 
@@ -185,9 +239,14 @@ let costoAttuale =
 
 let costoGiokri =
 
+
 (consumo * parametro.prezzo)
+
 +
+
 (parametro.quota * 12);
+
+
 
 
 
@@ -195,34 +254,10 @@ let costoGiokri =
 
 let differenza =
 
+
 costoAttuale - costoGiokri;
 
 
-
-
-
-/****************************************************
- * GOOGLE ANALYTICS 4
- * EVENTO AVVIO ANALISI
- ****************************************************/
-
-
-if(typeof gtag === "function"){
-
-gtag(
-'event',
-'quick_check_avviato',
-{
-
-energia: energia,
-
-consumo_annuo: consumo
-
-}
-
-);
-
-}
 
 
 
@@ -231,19 +266,31 @@ consumo_annuo: consumo
 let valutazione;
 
 
+
+
+
 if(differenza > 20){
 
+
 valutazione =
+
 "<span class='ok'>🟢 Convenienza possibile</span>";
+
 
 }
 
 else {
 
+
 valutazione =
+
 "<span class='warn'>🟡 Convenienza limitata</span>";
 
+
 }
+
+
+
 
 
 
@@ -252,70 +299,57 @@ valutazione =
 document.getElementById("risultato").innerHTML =
 
 
+
 "<h3>Analisi GiOKri</h3>" +
 
+
 "Tipo energia: <b>"+energia+"</b><br>" +
+
 
 "Cluster: <b>"+parametro.logica+"</b><br><br>" +
 
 
+
+
+
 "Costo attuale stimato:<br>" +
 
+
 "<b>€ "+
+
 costoAttuale.toFixed(2)
+
 +"</b><br><br>" +
+
+
+
 
 
 "Scenario riferimento GiOKri:<br>" +
 
+
 "<b>€ "+
+
 costoGiokri.toFixed(2)
+
 +"</b><br><br>" +
+
+
+
 
 
 "Risparmio stimato:<br>" +
 
+
 "<b>€ "+
+
 differenza.toFixed(2)
+
 +"</b><br><br>" +
 
+
+
 valutazione;
-
-
-
-
-/****************************************************
- * GOOGLE ANALYTICS 4
- * EVENTO RISULTATO
- ****************************************************/
-
-
-if(typeof gtag === "function"){
-
-gtag(
-'event',
-'quick_check_risultato',
-{
-
-energia: energia,
-
-cluster: parametro.logica,
-
-risparmio_stimato:
-Number(differenza.toFixed(2)),
-
-giudizio:
-(differenza > 20)
-?
-"Convenienza possibile"
-:
-"Convenienza limitata"
-
-}
-
-);
-
-}
 
 
 
