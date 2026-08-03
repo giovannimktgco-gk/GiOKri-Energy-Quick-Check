@@ -77,25 +77,40 @@ event => {
 
 
 
-/****************************************************
- * GESTIONE RICHIESTE
- ****************************************************/
-
 self.addEventListener(
 "fetch",
 event => {
 
 
+const url = new URL(event.request.url);
+
+
+
+/*
+ Non intercettare chiamate esterne API
+*/
+
+if(
+url.hostname.includes("script.google.com")
+){
+
+return;
+
+}
+
+
+
+
 event.respondWith(
 
 
-  caches.match(event.request)
+caches.match(event.request)
 
-  .then(response =>
+.then(response =>
 
-    response || fetch(event.request)
+response || fetch(event.request)
 
-  )
+)
 
 
 );
