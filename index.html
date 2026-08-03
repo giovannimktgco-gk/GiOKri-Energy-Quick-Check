@@ -1,86 +1,168 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 
 <title>GiOKri Energy Quick Check</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0b5394">
 
 
-<!-- Google tag (gtag.js) - GiOKri Energy Quick Check -->
+<!-- ===============================
+     GOOGLE ANALYTICS 4
+     Deve stare prima di app.js
+================================ -->
+
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KMYWDQ6PLT"></script>
+
 
 <script>
 
 window.dataLayer = window.dataLayer || [];
 
+
 function gtag(){
+
 dataLayer.push(arguments);
+
 }
+
 
 gtag('js', new Date());
 
-gtag('config', 'G-KMYWDQ6PLT');
+
+gtag(
+'config',
+'G-KMYWDQ6PLT'
+);
+
 
 </script>
 
 
+
+<!-- ===============================
+     STILI
+================================ -->
+
+
+<link rel="stylesheet" href="style.css">
+
+
+
+<!-- ===============================
+     PWA
+================================ -->
+
+
+<link rel="manifest" href="manifest.json">
+
+
+<meta 
+name="theme-color" 
+content="#0b5394">
+
+
+
 </head>
+
+
 
 <body>
 
+
+
 <div class="container">
 
+
+
 <h1>GiOKri Energy</h1>
+
 <h2>Quick Check</h2>
+
 
 
 <div class="box">
 
 
+
 <label>Tipo energia</label>
 
-<select id="energia" onchange="cambiaScenario()">
 
-<option value="LUCE">LUCE</option>
+<select 
+id="energia" 
+onchange="cambiaScenario()">
 
-<option value="GAS">GAS</option>
+
+<option value="LUCE">
+LUCE
+</option>
+
+
+<option value="GAS">
+GAS
+</option>
+
 
 </select>
 
 
 
+
 <label>Consumo annuo</label>
 
-<input 
+
+<input
+
 type="number"
+
 id="consumo"
-placeholder="es. 6000">
+
+placeholder="es. 6000"
+
+>
+
 
 
 
 <label>Prezzo energia attuale</label>
 
-<input 
+
+<input
+
 type="number"
+
 id="prezzoAttuale"
+
 step="0.000001"
-placeholder="€/kWh o €/Smc">
+
+placeholder="€/kWh o €/Smc"
+
+>
+
 
 
 
 <label>Quota fissa mensile</label>
 
-<input 
+
+<input
+
 type="number"
+
 id="quotaAttuale"
+
 step="0.01"
-placeholder="€/mese">
+
+placeholder="€/mese"
+
+>
+
 
 
 
@@ -91,37 +173,70 @@ ANALIZZA
 </button>
 
 
+
 </div>
 
 
 
-<div id="risultato" class="risultato">
+
+<div 
+id="risultato" 
+class="risultato">
+
 
 Inserisci i dati e premi ANALIZZA
 
+
+</div>
+
+
+
+
 </div>
 
 
 
-</div>
 
+
+<!-- ===============================
+     APPLICAZIONE
+================================ -->
 
 
 <script src="app.js"></script>
 
 
+
+
+
+<!-- ===============================
+     SERVICE WORKER PWA
+================================ -->
+
+
 <script>
+
 
 if ('serviceWorker' in navigator) {
 
+
 navigator.serviceWorker.register(
+
 'service-worker.js'
+
 );
 
+
 }
+
 
 </script>
 
 
+
+
+
 </body>
+
+
 </html>
