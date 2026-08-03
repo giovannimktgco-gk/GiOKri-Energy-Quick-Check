@@ -1,7 +1,8 @@
 /*
-GIORKI ENERGY QUICK CHECK v2
+GIORKI ENERGY QUICK CHECK v2.1
 
 Lettura parametri da Google Apps Script API
++ Tracciamento Google Analytics 4
 
 */
 
@@ -200,6 +201,33 @@ costoAttuale - costoGiokri;
 
 
 
+/****************************************************
+ * GOOGLE ANALYTICS 4
+ * EVENTO AVVIO ANALISI
+ ****************************************************/
+
+
+if(typeof gtag === "function"){
+
+gtag(
+'event',
+'quick_check_avviato',
+{
+
+energia: energia,
+
+consumo_annuo: consumo
+
+}
+
+);
+
+}
+
+
+
+
+
 let valutazione;
 
 
@@ -252,6 +280,43 @@ differenza.toFixed(2)
 +"</b><br><br>" +
 
 valutazione;
+
+
+
+
+/****************************************************
+ * GOOGLE ANALYTICS 4
+ * EVENTO RISULTATO
+ ****************************************************/
+
+
+if(typeof gtag === "function"){
+
+gtag(
+'event',
+'quick_check_risultato',
+{
+
+energia: energia,
+
+cluster: parametro.logica,
+
+risparmio_stimato:
+Number(differenza.toFixed(2)),
+
+giudizio:
+(differenza > 20)
+?
+"Convenienza possibile"
+:
+"Convenienza limitata"
+
+}
+
+);
+
+}
+
 
 
 }
