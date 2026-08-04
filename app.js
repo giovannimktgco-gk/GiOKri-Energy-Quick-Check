@@ -32,23 +32,27 @@ fetch(API_URL)
 
     parametriCaricati = true;
 
-
     console.log(
       "Parametri caricati:",
       scenari
     );
 
-const pulsante =
-document.getElementById("btnAnalizza");
+    console.log(
+      "Pulsante trovato:",
+      document.getElementById("btnAnalizza")
+    );
 
-if(pulsante){
+    const pulsante =
+    document.getElementById("btnAnalizza");
 
-pulsante.disabled = false;
+    if(pulsante){
 
-pulsante.innerHTML = "ANALIZZA";
+      pulsante.disabled = false;
 
-}
-    
+      pulsante.innerHTML = "ANALIZZA";
+
+    }
+
 })
 
 .catch(error => {
