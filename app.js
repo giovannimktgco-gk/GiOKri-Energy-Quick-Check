@@ -38,6 +38,17 @@ fetch(API_URL)
       scenari
     );
 
+const pulsante =
+document.getElementById("btnAnalizza");
+
+if(pulsante){
+
+pulsante.disabled = false;
+
+pulsante.innerHTML = "ANALIZZA";
+
+}
+    
 })
 
 .catch(error => {
