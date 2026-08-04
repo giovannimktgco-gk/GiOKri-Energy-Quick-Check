@@ -440,7 +440,7 @@ valutazione +
 
 "<div class='messaggio-commerciale'>" +
 
-"<b>Hai individuato un possibile risparmio di € " +
+"<b>Hai individuato un possibile risparmio annuo di € " +
 
 differenza.toFixed(2) +
 
