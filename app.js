@@ -195,11 +195,23 @@ return;
  ****************************************************/
 
 
-if(typeof gtag === "function"){
+if(window.gtag){
 
 
 console.log(
 "GA4 EVENT QUICK CHECK AVVIATO"
+);
+
+
+console.log(
+"GTAG:",
+window.gtag
+);
+
+
+console.log(
+"DATALAYER:",
+window.dataLayer
 );
 
 
@@ -424,8 +436,7 @@ valutazione;
  * EVENTO GA4 - RISULTATO GENERATO
  ****************************************************/
 
-
-if(typeof gtag === "function"){
+if(window.gtag){
 
 
 console.log(
