@@ -440,8 +440,29 @@ differenza.toFixed(2)
 
 
 
-valutazione;
+valutazione +
 
+"<br><br>" +
+
+"<div class='cta'>" +
+
+"<h4>Vuoi verificare il risparmio reale?</h4>" +
+
+"<p>" +
+"Un consulente GiOKri può analizzare la tua bolletta " +
+"e verificare se conviene cambiare o mantenere l'attuale fornitore."
++
+"</p>" +
+
+"<a href='https://wa.me/393271160053?text=Buongiorno%20GiOKri,%20ho%20appena%20fatto%20il%20Quick%20Check%20Energia%20e%20vorrei%20un%27analisi%20della%20mia%20bolletta' target='_blank'>" +
+
+"📲 Richiedi analisi gratuita"
+
++
+
+"</a>" +
+
+"</div>";
 
 
 
