@@ -428,20 +428,31 @@ costoGiokri.toFixed(2)
 
 
 
-
 "Risparmio stimato:<br>" +
 
-
 "<b>€ "+
-
 differenza.toFixed(2)
-
 +"</b><br><br>" +
 
+valutazione +
 
+"<br><br>" +
 
-valutazione;
+"<div class='messaggio-commerciale'>" +
 
+"<b>Hai individuato un possibile risparmio di € " +
+
+differenza.toFixed(2) +
+
+"</b><br><br>" +
+
+"Un consulente GiOKri può verificare gratuitamente " +
+
+"la tua bolletta reale e valutare se il risparmio è concreto."
+
++
+
+"</div>";
 
 
 
