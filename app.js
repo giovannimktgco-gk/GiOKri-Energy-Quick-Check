@@ -492,3 +492,53 @@ console.log(
 
 
 }
+
+
+/****************************************************
+ * GA4 - CLICK WHATSAPP QUICK CHECK
+ ****************************************************/
+
+
+document.addEventListener(
+"click",
+function(e){
+
+
+let link = e.target.closest("a");
+
+
+if(
+link &&
+link.href.includes("wa.me")
+){
+
+
+console.log(
+"GA4 EVENT QUICK CHECK CONTATTO"
+);
+
+
+
+if(window.gtag){
+
+
+gtag(
+"event",
+"quick_check_contatto",
+{
+
+origine:
+"quick_check_whatsapp"
+
+}
+
+);
+
+
+}
+
+
+}
+
+
+});
