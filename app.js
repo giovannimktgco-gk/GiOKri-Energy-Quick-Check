@@ -448,12 +448,21 @@ differenza.toFixed(2) +
 
 "Un consulente GiOKri può verificare gratuitamente " +
 
-"la tua bolletta reale e valutare se il risparmio è concreto."
+"la tua bolletta reale e valutare se il risparmio è concreto." +
 
-+
+"</div>" +
+
+"<br>" +
+
+"<div class='cta'>" +
+
+"<a href='https://wa.me/393271160053?text=Buongiorno%20GiOKri,%20ho%20appena%20fatto%20il%20Quick%20Check%20Energia%20e%20vorrei%20un%27analisi%20della%20mia%20bolletta' target='_blank' onclick='tracciaContatto()'>" +
+
+"📲 Richiedi analisi gratuita" +
+
+"</a>" +
 
 "</div>";
-
 
 
 
