@@ -1,9 +1,10 @@
 /*
-GIORKI ENERGY QUICK CHECK v2.3
+GIORKI ENERGY QUICK CHECK v2.4
 
 Lettura parametri da Google Apps Script API
 
 + Google Analytics 4 Event Tracking
++ WhatsApp Lead Tracking
 
 */
 
@@ -32,18 +33,22 @@ fetch(API_URL)
 
     parametriCaricati = true;
 
+
     console.log(
       "Parametri caricati:",
       scenari
     );
 
-    console.log(
-      "Pulsante trovato:",
-      document.getElementById("btnAnalizza")
-    );
 
     const pulsante =
     document.getElementById("btnAnalizza");
+
+
+    console.log(
+      "Pulsante trovato:",
+      pulsante
+    );
+
 
     if(pulsante){
 
@@ -53,14 +58,17 @@ fetch(API_URL)
 
     }
 
+
 })
 
 .catch(error => {
+
 
     console.error(
       "Errore caricamento API:",
       error
     );
+
 
 });
 
@@ -69,17 +77,23 @@ fetch(API_URL)
 
 
 
+
 function cambiaScenario(){
+
 
 let energia =
 document.getElementById("energia").value;
+
 
 console.log(
 "Scenario:",
 energia
 );
 
+
 }
+
+
 
 
 
@@ -107,9 +121,12 @@ for(let cluster in gruppi){
       consumo <= c.consumoMax
     ){
 
+
       return c;
 
+
     }
+
 
 }
 
@@ -119,6 +136,9 @@ return null;
 
 
 }
+
+
+
 
 
 
@@ -146,6 +166,7 @@ return;
 
 
 }
+
 
 
 
@@ -205,6 +226,8 @@ return;
 
 
 
+
+
 /****************************************************
  * EVENTO GA4 - ANALISI AVVIATA
  ****************************************************/
@@ -218,31 +241,24 @@ console.log(
 );
 
 
-console.log(
-"GTAG:",
-window.gtag
-);
-
-
-console.log(
-"DATALAYER:",
-window.dataLayer
-);
-
-
 
 gtag(
 "event",
 "quick_check_avviato",
 {
 
+
 energia: energia,
+
 
 consumo_annuo: consumo,
 
+
 prezzo_attuale: prezzoAttuale,
 
+
 quota_fissa: quotaAttuale
+
 
 }
 
@@ -250,6 +266,7 @@ quota_fissa: quotaAttuale
 
 
 }
+
 else {
 
 
@@ -343,10 +360,9 @@ costoAttuale - costoGiokri;
 let valutazione;
 
 
-
-
-
 let giudizio;
+
+
 
 
 
@@ -386,7 +402,6 @@ valutazione =
 
 
 
-
 document.getElementById("risultato").innerHTML =
 
 
@@ -401,8 +416,6 @@ document.getElementById("risultato").innerHTML =
 
 
 
-
-
 "Costo attuale stimato:<br>" +
 
 
@@ -414,8 +427,6 @@ costoAttuale.toFixed(2)
 
 
 
-
-
 "Scenario riferimento GiOKri:<br>" +
 
 
@@ -424,8 +435,6 @@ costoAttuale.toFixed(2)
 costoGiokri.toFixed(2)
 
 +"</b><br><br>" +
-
-
 
 
 
@@ -449,12 +458,16 @@ valutazione +
 "<h4>Vuoi verificare il risparmio reale?</h4>" +
 
 "<p>" +
+
 "Un consulente GiOKri può analizzare la tua bolletta " +
+
 "e verificare se conviene cambiare o mantenere l'attuale fornitore."
+
 +
+
 "</p>" +
 
-"<a href='https://wa.me/393271160053?text=Buongiorno%20GiOKri,%20ho%20appena%20fatto%20il%20Quick%20Check%20Energia%20e%20vorrei%20un%27analisi%20della%20mia%20bolletta' target='_blank'>" +
+"<a href='https://wa.me/393271160053?text=Buongiorno%20GiOKri,%20ho%20appena%20fatto%20il%20Quick%20Check%20Energia%20e%20vorrei%20un%27analisi%20della%20mia%20bolletta' target='_blank' onclick='tracciaContatto()'>" +
 
 "📲 Richiedi analisi gratuita"
 
@@ -464,13 +477,10 @@ valutazione +
 
 "</div>";
 
-
-
-
-
 /****************************************************
  * EVENTO GA4 - RISULTATO GENERATO
  ****************************************************/
+
 
 if(window.gtag){
 
@@ -486,14 +496,19 @@ gtag(
 "quick_check_risultato",
 {
 
+
 energia: energia,
 
+
 cluster: parametro.logica,
+
 
 risparmio_stimato:
 Number(differenza.toFixed(2)),
 
+
 giudizio: giudizio
+
 
 }
 
@@ -501,6 +516,7 @@ giudizio: giudizio
 
 
 }
+
 else {
 
 
@@ -510,6 +526,65 @@ console.log(
 
 
 }
+
+
+
+}
+
+
+
+
+
+
+
+
+/****************************************************
+ * EVENTO GA4 - CLICK CONTATTO WHATSAPP
+ ****************************************************/
+
+
+function tracciaContatto(){
+
+
+
+if(window.gtag){
+
+
+
+console.log(
+"GA4 EVENT QUICK CHECK CONTATTO"
+);
+
+
+
+gtag(
+"event",
+"quick_check_contatto",
+{
+
+
+origine:
+"quick_check_whatsapp"
+
+
+}
+
+);
+
+
+
+}
+
+else {
+
+
+console.log(
+"GA4 CONTATTO NON DISPONIBILE"
+);
+
+
+}
+
 
 
 }
