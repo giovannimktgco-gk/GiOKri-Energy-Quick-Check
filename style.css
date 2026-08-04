@@ -105,3 +105,14 @@ color:#b45f06;
 font-weight:bold;
 
 }
+
+.cta {
+display:block !important;
+visibility:visible !important;
+opacity:1 !important;
+}
+
+.cta a {
+display:inline-block !important;
+visibility:visible !important;
+}
